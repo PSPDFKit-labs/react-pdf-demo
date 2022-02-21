@@ -1,25 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import { Document, Page } from "react-pdf/dist/esm/entry.webpack";
+import "react-pdf/dist/esm/Page/AnnotationLayer.css";
+import "./App.css";
 
-function App() {
+const App = () => {
+  const [numPages, setNumPages] = useState(null);
+  const [pageNumber, setPageNumber] = useState(1);
+
+  const onDocumentLoadSuccess = ({ numPages }) => {
+    setNumPages(numPages);
+  };
+
+  const goToPrevPage = () =>
+    setPageNumber(pageNumber - 1 <= 1 ? 1 : pageNumber - 1);
+
+  const goToNextPage = () =>
+    setPageNumber(pageNumber + 1 >= numPages ? numPages : pageNumber + 1);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <div className="page">
+      <nav>
+        <button onClick={goToPrevPage} className="previous">
+          Prev
+        </button>
+        <button onClick={goToNextPage} className="next">
+          Next
+        </button>
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Page {pageNumber} of {numPages}
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      </nav>
+
+      <Document file="document.pdf" onLoadSuccess={onDocumentLoadSuccess}>
+        <Page pageNumber={pageNumber} />
+      </Document>
     </div>
   );
-}
+};
 
 export default App;
