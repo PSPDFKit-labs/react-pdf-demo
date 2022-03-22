@@ -1,6 +1,7 @@
 # React-PDF Example Project
 
-This application uses [`react-pdf`](https://github.com/wojtekmaj/react-pdf) to display PDF files.
+This application uses [`react-pdf`](https://github.com/wojtekmaj/react-pdf) to display PDF files. You can follow along with the [accompanying blog post](https://pspdfkit.com/blog/2021/how-to-build-a-reactjs-pdf-viewer-with-react-pdf/).
+
 ## Installation
 
 ```bash
