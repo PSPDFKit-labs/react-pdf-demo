@@ -9,7 +9,7 @@ git clone https://github.com/PSPDFKit-labs/react-pdf-demo
 cd react-pdf-demo
 
 npm install 
-npm start
+npm run dev
 ```
 
 Runs the app in the development mode.\
